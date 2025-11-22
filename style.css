@@ -1,0 +1,162 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Nunito', sans-serif;
+    background: linear-gradient(135deg, #fff1eb 0%, #ace0f9 100%); /* Pamuk şeker gökyüzü */
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #5d4037;
+}
+
+/* --- GİRİŞ EKRANI --- */
+#login-screen {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    transition: opacity 0.5s ease;
+}
+
+.login-box {
+    background: white;
+    padding: 40px;
+    border-radius: 30px;
+    box-shadow: 0 10px 40px rgba(135, 206, 250, 0.3);
+    text-align: center;
+    width: 350px;
+    border: 2px solid #fff;
+}
+
+.login-box h1 {
+    font-family: 'Fredoka', sans-serif;
+    color: #ff9a9e;
+    margin-bottom: 10px;
+}
+
+input {
+    width: 100%;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 15px;
+    border: 2px solid #eee;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
+    outline: none;
+    transition: border 0.3s;
+}
+
+input:focus { border-color: #a8e6cf; }
+
+#btn-login {
+    width: 100%;
+    padding: 15px;
+    background-color: #ff9a9e;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: transform 0.1s;
+}
+
+#btn-login:active { transform: scale(0.95); }
+
+#error-msg {
+    color: #ff6b6b;
+    margin-top: 15px;
+    font-size: 0.9rem;
+    min-height: 20px;
+}
+
+/* --- LOBİ EKRANI --- */
+#lobby-screen.hidden { display: none; }
+
+#lobby-screen {
+    width: 100%;
+    max-width: 1000px;
+    padding: 20px;
+    text-align: center;
+    animation: fadeIn 1s ease;
+}
+
+header { margin-bottom: 40px; }
+header h1 {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 3rem;
+    color: #84fab0;
+    text-shadow: 2px 2px 0px #fff;
+    background: -webkit-linear-gradient(#8fd3f4, #84fab0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+header p { font-size: 1.2rem; color: #777; margin-top: 10px;}
+
+/* IZGARA YAPISI */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Responsive */
+    gap: 30px;
+    justify-items: center;
+}
+
+/* KART TASARIMI */
+.card {
+    background: white;
+    width: 100%;
+    max-width: 250px;
+    height: 280px;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: #555;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+    border: 4px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    transition: transform 0.3s;
+}
+
+.card:hover .icon { transform: scale(1.2) rotate(10deg); }
+
+.card h2 { font-family: 'Fredoka', sans-serif; margin-bottom: 10px; }
+.card p { font-size: 0.9rem; color: #999; }
+
+/* Kartlara Özel Renkler */
+.mektup:hover { border-color: #ff9a9e; }
+.mektup .icon { color: #ff9a9e; }
+
+.tarif:hover { border-color: #fbc2eb; }
+.tarif .icon { color: #fbc2eb; }
+
+.film:hover { border-color: #a18cd1; }
+.film .icon { color: #a18cd1; }
+
+.oyun:hover { border-color: #84fab0; }
+.oyun .icon { color: #84fab0; }
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}

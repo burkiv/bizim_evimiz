@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Burki & Samiye Dünyası</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div id="login-screen">
+        <div class="login-box">
+            <h1>🔒 BİZİM DÜNYAMIZ</h1>
+            <p>Sadece ev sahipleri girebilir.</p>
+            <input type="password" id="password-input" placeholder="Şifremiz ne?">
+            <button id="btn-login">GİRİŞ YAP</button>
+            <p id="error-msg"></p>
+        </div>
+    </div>
+
+    <div id="lobby-screen" class="hidden">
+        <header>
+            <h1>Hoş Geldiniz 🌸</h1>
+            <p>Bugün hangi odaya geçmek istersiniz?</p>
+        </header>
+
+        <div class="grid-container">
+            
+            <a href="https://mektup-projesi-linkin.vercel.app" class="card mektup" target="_blank">
+                <div class="icon"><i class="fa-solid fa-envelope-open-text"></i></div>
+                <h2>Mektuplarımız</h2>
+                <p>Her ayın 4'ü...</p>
+            </a>
+
+            <a href="https://tarif-projesi-linkin.vercel.app" class="card tarif" target="_blank">
+                <div class="icon"><i class="fa-solid fa-utensils"></i></div>
+                <h2>Tarif Defteri</h2>
+                <p>En güzel yemekler buraya.</p>
+            </a>
+
+            <a href="https://film-projesi-linkin.vercel.app" class="card film" target="_blank">
+                <div class="icon"><i class="fa-solid fa-film"></i></div>
+                <h2>Film Gecesi</h2>
+                <p>Ne izlesek derdine son.</p>
+            </a>
+
+            <a href="https://oyun-projesi-linkin.vercel.app" class="card oyun" target="_blank">
+                <div class="icon"><i class="fa-solid fa-puzzle-piece"></i></div>
+                <h2>Bizim Lingo</h2>
+                <p>Kelimeyi bulabilecek misin?</p>
+            </a>
+
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
