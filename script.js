@@ -1,7 +1,5 @@
 // --- GÜVENLİK AYARLARI ---
-
-// BURAYA ŞİFRENİN KENDİSİNİ DEĞİL, SHA-256 HASH KODUNU YAZACAKSIN
-// Örnek: "2016" şifresinin hash'i aşağıdadır. Sen kendi şifreninkini buraya koy.
+// Senin Hash Kodun (Burayı kendi kodunla değiştirmeyi unutma!)
 const DOGRU_HASH = "8cde9f7a3ce619f10553959f61ccfcfe52318602e09ae5e8c9357051981d2783"; 
 
 const loginScreen = document.getElementById("login-screen");
@@ -10,8 +8,19 @@ const passInput = document.getElementById("password-input");
 const btnLogin = document.getElementById("btn-login");
 const errorMsg = document.getElementById("error-msg");
 
-// --- ŞİFRELEME FONKSİYONU (SHA-256) ---
-// Bu fonksiyon girilen metni karmaşık bir koda çevirir
+// --- 1. SAYFA YÜKLENİNCE KONTROL ET ---
+// Tarayıcı hafızasına bak: Daha önce giriş yapılmış mı?
+document.addEventListener("DOMContentLoaded", () => {
+    const girisIzni = localStorage.getItem("samiye_giris_yapti");
+    
+    if (girisIzni === "evet") {
+        // Zaten giriş yapılmış, direkt lobiyi aç (Animasyonsuz)
+        loginScreen.style.display = "none";
+        lobbyScreen.classList.remove("hidden");
+    }
+});
+
+// --- ŞİFRELEME FONKSİYONU ---
 async function sha256(message) {
     const msgBuffer = new TextEncoder().encode(message);
     const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
@@ -20,15 +29,18 @@ async function sha256(message) {
     return hashHex;
 }
 
-// --- GİRİŞ KONTROLÜ ---
+// --- GİRİŞ İŞLEMİ ---
 async function girisYap() {
-    const girilen = passInput.value;
-    
-    // Girilen şifreyi hash'le ve saklanan hash ile karşılaştır
+    const girilen = passInput.value.trim(); // Boşlukları temizle
     const girilenHash = await sha256(girilen);
 
     if (girilenHash === DOGRU_HASH) {
-        // Şifre Doğru
+        // Şifre Doğru!
+        
+        // *** KRİTİK NOKTA: Hafızaya Kaydet ***
+        localStorage.setItem("samiye_giris_yapti", "evet");
+
+        // Animasyonla aç
         loginScreen.style.opacity = "0";
         setTimeout(() => {
             loginScreen.style.display = "none";
@@ -46,15 +58,13 @@ async function girisYap() {
     }
 }
 
-// Butona tıkla
+// Butonlar
 btnLogin.addEventListener("click", girisYap);
-
-// Enter'a basınca
 passInput.addEventListener("keypress", (e) => {
     if (e.key === "Enter") girisYap();
 });
 
-// Shake Animasyonu (CSS yoksa buradan ekler)
+// Shake Animasyonu
 const styleSheet = document.createElement("style");
 styleSheet.innerText = `
 .shake { animation: shake 0.3s; }
